@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="nucore-uarch" name="NuCore micro-architecture">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Blocks -->
+        <mxCell id="pc" value="program counter" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="rom" value="instruction ROM" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="150" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="decode" value="decode register" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="270" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="rfa" value="reg file A" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="160" y="400" width="140" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="rfb" value="reg file B" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="480" y="400" width="140" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="alu" value="ALU" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="340" y="530" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="outreg" value="output register" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=13;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="300" y="640" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Annotations -->
+        <mxCell id="decode-note" value="opcode, addr_a, addr_b, imm,&lt;br&gt;write_a, write_b, alu_en, soft_reset" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="495" y="265" width="230" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="restart-note" value="(opcode == RESET)" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="395" y="220" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="outputs" value="result, zero, Data_A, Data_B" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="650" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Main data path -->
+        <mxCell id="e-pc-rom" value="pc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;align=left;verticalAlign=middle;" edge="1" parent="1" source="pc" target="rom">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="12" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-rom-decode" value="instr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;align=left;verticalAlign=middle;" edge="1" parent="1" source="rom" target="decode">
+          <mxGeometry x="-0.6" relative="1" as="geometry">
+            <mxPoint x="12" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-decode-rfa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="decode" target="rfa">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="360"/>
+              <mxPoint x="230" y="360"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-decode-rfb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="decode" target="rfb">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="360"/>
+              <mxPoint x="550" y="360"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-rfa-alu" value="operand_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;align=left;verticalAlign=middle;" edge="1" parent="1" source="rfa" target="alu">
+          <mxGeometry x="-0.7" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="500"/>
+              <mxPoint x="370" y="500"/>
+            </Array>
+            <mxPoint x="12" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-rfb-alu" value="operand_b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;align=left;verticalAlign=middle;" edge="1" parent="1" source="rfb" target="alu">
+          <mxGeometry x="-0.7" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="500"/>
+              <mxPoint x="410" y="500"/>
+            </Array>
+            <mxPoint x="12" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-alu-out" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="alu" target="outreg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-out-ports" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="outreg" target="outputs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Restart feedback: instr opcode == RESET restarts the program counter -->
+        <mxCell id="e-restart" value="restart" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;align=center;verticalAlign=bottom;" edge="1" parent="1" target="pc">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="390" y="230" as="sourcePoint"/>
+            <Array as="points">
+              <mxPoint x="390" y="230"/>
+              <mxPoint x="200" y="230"/>
+              <mxPoint x="200" y="65"/>
+            </Array>
+            <mxPoint x="0" y="-6" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="restart-dot" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="386" y="226" width="8" height="8" as="geometry"/>
+        </mxCell>
+        <mxCell id="left-spacer" parent="1" style="shape=rectangle;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry x="20" y="0" width="10" height="730" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
