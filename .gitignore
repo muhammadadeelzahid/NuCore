@@ -1,0 +1,33 @@
+# Simulation output
+build/
+*.wlf
+
+# Quartus build artifacts
+db/
+incremental_db/
+output_files/
+simulation/
+greybox_tmp/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.qmsg
+*.done
+*.sof
+*.pof
+*.jdi
+*.pin
+*.sld
+*.cdf
+*.bak
+*.bak1
+c5_pin_model_dump.txt
+*_nativelink_simulation.rpt
+
+# Editors / OS
+.DS_Store
+*.swp
+
+# draw.io backups
+.$*.bkp
